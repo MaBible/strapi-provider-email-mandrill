@@ -1,0 +1,26 @@
+{
+  "name": "strapi-provider-email-mandrill",
+  "version": "1.0.0",
+  "description": "Mandrill provider for strapi email plugin",
+  "keywords": [
+    "email",
+    "strapi",
+    "mandrill",
+    "mailchimp"
+  ],
+  "main": "./lib",
+  "directories": {
+    "lib": "./lib"
+  },
+  "scripts": {
+    "test": "echo \"no tests yet\""
+  },
+  "dependencies": {
+    "@mailchimp/mailchimp_transactional": "^1.0.47",
+    "@strapi/utils": "4.1.5"
+  },
+  "engines": {
+    "node": ">=12.22.0 <=16.x.x",
+    "npm": ">=6.0.0"
+  }
+}
