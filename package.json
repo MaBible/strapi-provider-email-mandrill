@@ -1,6 +1,6 @@
 {
   "name": "strapi-provider-email-mandrill",
-  "version": "1.0.1",
+  "version": "2.0.1",
   "description": "Mandrill provider for strapi email plugin",
   "keywords": [
     "email",
@@ -8,19 +8,26 @@
     "mandrill",
     "mailchimp"
   ],
-  "main": "./lib",
-  "directories": {
-    "lib": "./lib"
+  "author": {
+    "name": "maBible",
+    "email": "technique@mabible.com",
+    "url": "https://mabible.com/"
   },
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
+    "postinstall": "npm run build",
     "test": "echo \"no tests yet\""
-  },
-  "dependencies": {
-    "@mailchimp/mailchimp_transactional": "^1.0.47",
-    "@strapi/utils": "4.1.5"
   },
   "engines": {
     "node": ">=12.22.0 <=18.x.x",
     "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "@mailchimp/mailchimp_transactional": "^1.0.59"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.5",
+    "typescript": "^4.0.0"
   }
 }
