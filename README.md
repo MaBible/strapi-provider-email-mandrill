@@ -23,7 +23,7 @@ Add on config/plugin.ts file the configuration bellow
 ```
   email: {
     config: {
-      provider: "strapi-provider-plugin-mandrill",
+      provider: "strapi-provider-email-mandrill",
       providerOptions: {
         apiKey: process.env.MANDRILL_API_KEY,
       },
