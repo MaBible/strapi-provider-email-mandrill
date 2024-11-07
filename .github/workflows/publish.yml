@@ -1,0 +1,56 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - 'v*'  # Déclenche l'action pour chaque tag commençant par "v" (ex: v1.0.0)
+
+jobs:
+  publish:
+    name: Publish Package to GitHub
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile  #
+
+      - name: Log in to GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+
+      - name: Update version in package.json
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          npm version "$tag" --no-git-tag-version
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn publish --new-version "$tag" --access public  # Remplacez par 'npm publish' si vous utilisez npm
+        continue-on-error: false 
+
+      - name: Create Release on GitHub
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: |
+            **Nouveau déploiement pour la version ${{ github.ref_name }}**
+            Consultez les [modifications](https://github.com/${{ github.repository }}/compare/${{ github.ref_name }}...main).
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

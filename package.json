@@ -1,6 +1,9 @@
 {
-  "name": "strapi-provider-email-mandrill",
-  "version": "2.0.1",
+  "name": "@mabible/strapi-provider-email-mandrill",
+  "version": "2.0.4",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "description": "Mandrill provider for strapi email plugin",
   "keywords": [
     "email",
@@ -11,7 +14,7 @@
   "author": {
     "name": "maBible",
     "email": "technique@mabible.com",
-    "url": "https://mabible.com/"
+    "url": "https://mabible.app/"
   },
   "main": "src/index.js",
   "scripts": {
