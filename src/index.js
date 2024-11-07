@@ -11,6 +11,10 @@ module.exports = {
       send: async (options) => {
         try {
           options = typeof options === "object" ? options : {};
+
+          if (options.to && options.to.startsWith("test-")) {
+            return;
+          }
           options.from_name = options.from_name || settings.defaultName;
           options.from_email = options.from_email || settings.defaultFrom;
           options.replyTo = options.replyTo || settings.defaultReplyTo;
